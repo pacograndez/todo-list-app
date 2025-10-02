@@ -7,7 +7,6 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthStateService {
-
   private readonly TOKEN_KEY = 'accessToken';
   private readonly token: WritableSignal<string | null> = signal<string | null>(this.getTokenFromStorage());
   private readonly authService = inject(AuthService);
@@ -15,7 +14,7 @@ export class AuthStateService {
 
   public login(email: string): Observable<void> {
     return this.authService.login(email).pipe(
-      tap(res => this.setToken(res.accessToken)),
+      tap((res) => this.setToken(res.accessToken)),
       map(() => void 0)
     );
   }

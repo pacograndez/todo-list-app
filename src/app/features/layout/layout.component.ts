@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { AuthStateService } from '../../features/auth/state/auth-state.service';
+import { AuthStateService } from '../auth/state/auth-state.service';
 
 @Component({
   selector: 'td-layout',
@@ -9,7 +9,12 @@ import { AuthStateService } from '../../features/auth/state/auth-state.service';
     <nav class="navbar bg-body-secondary">
       <div class="container">
         <span class="navbar-brand">To-Do List App</span>
-        <button class="btn btn-outline-primary" type="button" (click)=onLogout()>Log out</button>
+        <button
+          class="btn btn-outline-primary"
+          type="button"
+          (click)="onLogout()">
+          Log out
+        </button>
       </div>
     </nav>
     <main>
@@ -24,5 +29,4 @@ export class LayoutComponent {
   onLogout() {
     this.authSateService.logout();
   }
-
 }

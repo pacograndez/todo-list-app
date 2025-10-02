@@ -31,18 +31,20 @@ export class AuthComponent implements OnDestroy {
   onSubmit(): void {
     if (this.loginForm.invalid) {
       return;
-    }    
+    }
 
     const email = this.loginForm.getRawValue();
 
-    this.authStateService.login(email).pipe(
-      takeUntil(this.unsubscribe$)).subscribe({
-      next: (() => {
-        this.loginError = null;
-        this.router.navigate(['/tasks']);
-      }),
-      error: (err) => this.loginError = err.error.message
-    });
+    this.authStateService
+      .login(email)
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe({
+        next: () => {
+          this.loginError = null;
+          this.router.navigate(['/tasks']);
+        },
+        error: (err) => (this.loginError = err.error.message)
+      });
   }
 
   ngOnDestroy(): void {
