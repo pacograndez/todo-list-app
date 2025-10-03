@@ -32,17 +32,14 @@
               }
             </div>
           }
-
-          @if (loginError) {
-            <div class="invalid-feedback d-block">
-              {{ loginError }}
-            </div>
-          }
         </div>
         <button
           type="submit"
           class="btn btn-outline-primary w-100"
-          [disabled]="!loginForm.valid">
+          [disabled]="!loginForm.valid || isLoading()">
+          @if (isLoading()) {
+            <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+          }
           Log In
         </button>
       </form>
