@@ -1,0 +1,64 @@
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th
+          scope="col"
+          class="text-center">
+          Actions
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (task of currentTasks(); track task.id) {
+        <tr class="align-middle text-center">
+          <td>
+            <input
+              class="form-check-input rounded-pill"
+              type="checkbox"
+              [id]="task.id"
+              [(ngModel)]="task.completed"
+              aria-label="..."
+              (change)="onUpdate(task)" />
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control"
+              [style.background-color]="task.isReadOnly ? 'transparent' : null"
+              [style.border]="task.isReadOnly ? '0' : null"
+              [name]="task.title"
+              [(ngModel)]="task.title"
+              [readOnly]="task.isReadOnly"
+              [disabled]="task.isReadOnly"
+              (keyup.enter)="onUpdate(task)" />
+          </td>
+          <td class="overflow-hidden">
+            <div class="d-flex justify-content-center gap-2">
+              <button
+                class="btn btn-outline-primary border-0"
+                (click)="onEdit(task)">
+                <i class="bi bi-pencil-square"></i>
+              </button>
+              <button
+                class="btn btn-outline-danger border-0"
+                (click)="onDelete(task)">
+                <i class="bi bi-trash"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+  <div class="d-flex justify-content-center mt-auto">
+    <ngb-pagination
+      [collectionSize]="collectionSize()"
+      [(page)]="page"
+      [pageSize]="pageSize()"
+      (pageChange)="page.set($event)">
+    </ngb-pagination>
+  </div>
+</div>

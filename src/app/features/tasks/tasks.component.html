@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row justify-content-center mt-5">
+    <div class="col-12 col-md-10 col-lg-8 col-xl-6">
+      <form
+        class="row row-cols-auto g-3 align-items-center"
+        (ngSubmit)="onCreateTask()">
+        <div class="col-auto">
+          <input
+            [value]="taskTitle()"
+            (input)="onInputChange($event)"
+            class="form-control"
+            type="text"
+            placeholder="Task name" />
+        </div>
+        <div class="col-auto">
+          <button
+            type="submit"
+            class="btn btn-outline-primary"
+            [disabled]="!isValid()">
+            <i class="bi bi-plus-square"></i> Add Task
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row justify-content-center mt-3">
+    <div class="col-12 col-md-10 col-lg-8 col-xl-6">
+      <td-task-list
+        [tasks]="tasks()"
+        (editTask)="onEditTask($event)"
+        (updateTask)="onUpdateTask($event)"
+        (deleteTask)="onDeleteTask($event)"></td-task-list>
+    </div>
+  </div>
+</div>
