@@ -4,7 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --configuration production",
+    "build": "ng build --configuration production && npm run copy-redirects",
+    "copy-redirects": "cp _redirects dist/todo-list-app/browser/_redirects",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
